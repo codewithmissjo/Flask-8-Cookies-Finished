@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="row">
+    <div class="col">
+        <h2>Server</h2>
+
+        {% if serverStatus %}
+            <p class="alert alert-success">You are signed in via the server.</p>
+            <p>Hello, {{serverStatus}}!</p>
+            <a class="btn btn-primary" href="/sign-out">Sign out via the server.</a>
+        {% else %}
+            <p class="alert alert-danger">You are NOT signed in via the server.</p>
+            <div>
+                <form method="POST" action="/sign-in">
+                    <label class="form-label fw-bold">Sign in using the server</label>
+                    <input class="form-control" name="sign-in" type="text" placeholder="username" />
+                    <button class="btn btn-primary mt-2" type="submit">Server Sign In</button>
+                </form>
+            </div>
+        {% endif %}
+    </div>
+    <div class="col">
+        <h2>Client</h2>
+
+        <p class="client-no alert alert-danger">You are NOT signed in via the client.</p>
+        <div class="client-no">
+            <label class="form-label fw-bold">Sign in using the client</label>
+            <input class="form-control" id="sign-in" type="text" placeholder="username" />
+        </div>
+        <button class="client-no btn btn-primary mt-2" onclick="signIn()">Client Sign In</button>
+        <p class="client-yes alert alert-success">You are signed in via the client.</p>
+        <p class="client-yes">Hello, <span id="un"></span>!</p>
+        <button class="client-yes btn btn-primary" onclick="signOut()">Sign out via the client.</button>
+    </div>
+</div>
+{% endblock %}
