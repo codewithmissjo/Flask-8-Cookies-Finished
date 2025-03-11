@@ -11,9 +11,9 @@ def index():
 
 @app.route('/sign-in', methods=["POST"])
 def sign_in():
-  value = request.form.get('sign-in')
+  value2 = request.form.get('sign-in')
   resp = make_response(redirect('/'))
-  resp.set_cookie('server-sign-in', value, max_age = 300)
+  resp.set_cookie('server-sign-in', value2, max_age = 300)
   return resp
 
 @app.route('/sign-out')
